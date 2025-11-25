@@ -9,6 +9,7 @@ import { useState } from "react";
 import type { Blog } from "./types";
 import Modal from "./components/Modal";
 import BlogForm from "./components/BlogForm";
+import ArticleList from "./components/ArticleList";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +40,7 @@ function App() {
               >
                 Add New Blog <IoMdAddCircle className="ml-2" />
               </button>
+              <ArticleList onEdit={openModalEdit} />
               {isModalOpen && (
                 <Modal onClose={() => setIsModalOpen(false)}>
                   <BlogForm

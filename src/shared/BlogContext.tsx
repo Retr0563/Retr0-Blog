@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import type { ReactNode } from "react";
 import type { Blog } from "../types";
 
@@ -33,6 +33,12 @@ export const BlogProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </BlogContext.Provider>
   );
+};
+
+export const useBlogs = () => {
+  const context = useContext(BlogContext);
+  if (!context) throw new Error("useBlogs must be used within a BlogProvider");
+  return context;
 };
 
 export default BlogContext;
