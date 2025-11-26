@@ -11,7 +11,11 @@ interface BlogContextType {
 
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
-export const BlogProvider = ({ children }: { children: ReactNode }) => {
+export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   const addBlog = (blog: Blog) => {
@@ -35,10 +39,9 @@ export const BlogProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+export default BlogContext;
 export const useBlogs = () => {
   const context = useContext(BlogContext);
   if (!context) throw new Error("useBlogs must be used within a BlogProvider");
   return context;
 };
-
-export default BlogContext;

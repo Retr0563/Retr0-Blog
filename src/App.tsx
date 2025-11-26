@@ -12,21 +12,21 @@ import BlogForm from "./components/BlogForm";
 import ArticleList from "./components/ArticleList";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editBlog, setEditBlog] = useState<Blog | null>(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [editBlog, setEditBlog] = useState<Blog | undefined>(undefined);
 
   const handleCLick = () => {
-    setEditBlog(null);
-    setIsModalOpen(true);
+    setEditBlog(undefined);
+    setModalOpen(true);
   };
 
-  const openModalEdit = () => {
+  const openModalEdit = (blog: Blog) => {
     setEditBlog(blog);
-    setIsModalOpen(true);
+    setModalOpen(true);
   };
 
   return (
-    <>
+    <div>
       <BlogProvider>
         <Navigation />
 
@@ -42,10 +42,10 @@ function App() {
               </button>
               <ArticleList onEdit={openModalEdit} />
               {isModalOpen && (
-                <Modal onClose={() => setIsModalOpen(false)}>
+                <Modal onClose={() => setModalOpen(false)}>
                   <BlogForm
                     existingBlog={editBlog}
-                    onClose={() => setIsModalOpen(false)}
+                    onClose={() => setModalOpen(false)}
                   />
                 </Modal>
               )}
@@ -58,7 +58,7 @@ function App() {
           </div>
         </div>
       </BlogProvider>
-    </>
+    </div>
   );
 }
 

@@ -23,6 +23,20 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           {article.title}
         </h3>
         <p className="text-sm text-gray-700 flex-1">{article.description}</p>
+        <div className="mt-4 flex gap-2">
+          <button
+            className="text-sm text-blue-600 hover:underline"
+            onClick={onEdit}
+          >
+            Edit
+          </button>
+          <button
+            className="text-sm text-red-600 hover:underline"
+            onClick={onDelete}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
